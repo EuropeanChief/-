@@ -37,14 +37,14 @@
 
 - FileSystemXmlAApplicationContext:ApplicationContext实现，从文件系统获取配置文件。`BeanFactory b = new FileSystemXmlApplicationContext("*.xml")`
 
-   ### 2.实例化Bean
-     #### 1) 使用构造器实例化
+### 2.实例化Bean
+#### 1) 使用构造器实例化
       在id存在时，id是标识符，name是别名，id不存在时name是标识符，name存在多个值时(,、;隔开)若id不存在，则第一个值是标识符其他是别名，反之则都是别名。id和name都是唯一值,
          
-         a.空构造器
+a.空构造器
 
-         `<bean id="A" name="B;c,d" class="包名.类名" />`
-         b.有参构造器
+`<bean id="A" name="B;c,d" class="包名.类名" />`
+b.有参构造器
 
 ```
          <bean id="A1" class="包名.类名">
@@ -53,16 +53,15 @@
          </bean>
 ```
 
-     #### 2) 使用静态工厂实例化
+#### 2) 使用静态工厂实例化
 
 ```
          <bean id="A2" class="包名.类名" factory-method="类名中需要用到的方法">
          </bean>
 ```
 
-     #### 3) 使用实例工厂实例化
-
-           先定义实例工厂
+#### 3) 使用实例工厂实例化
+    先定义实例工厂
 
 `<bean id="A3" class="包名.类名" />`
 
