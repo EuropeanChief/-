@@ -1,25 +1,26 @@
 # Ioc学习
 ## 一、ApplicationContext 的应用
   ### 1.ApplicationContext的获取方式
-     - 通过ClassPathXMLApplicationContext类获得(一般适用于测试)
+#### 1) 通过ClassPathXMLApplicationContext类获得(一般适用于测试)
          `ApplicationContext context = new ClassPathXmlApplicationContext("*.xml");`
-         
-     - 通过WebApplicationUtils工具类获取(依赖Servlet容器)。
+
+#### 2) 通过WebApplicationUtils工具类获取(依赖Servlet容器)。
          `ApplicationContext ap = WebApplicationUtils.getWebApplicationContext(Servlet容器参数)`
 
-     - 创建自己的工具类。
+#### 3) 创建自己的工具类。
          用自己创建的工具类实现Spring的ApplicationContextAware接口。
         最后在Spring配置文件中注册自己的工具类。
+
         `<bean id="springContextHolder" class="com.fubo.utils.spring.SpringContextHolder" lazy-init="false"/>`
+  
         lazy-inti="false" 表示立即加载。 lazy-inti="true"  表示延时加载。使用后者bean将会在第一次向容器通过getBean方法时被实例化。
 
 ## 二、Ioc容器
 
   ### 1.容器实现
 
-      BeanFactory提供了Ioc容器的基本功能，ApplicationContext增加了更多企业级功能支持
-      - XmlBeanFactory：BeanFactory实现，可以从classpath或文件系统获取资源
-          
+  BeanFactory提供了Ioc容器的基本功能，ApplicationContext增加了更多企业级功能支持
+- XmlBeanFactory：BeanFactory实现，可以从classpath或文件系统获取资源       
         ```
         File file = new File("*.xml");
         Resource resource = new FileSystemResource(file);
@@ -32,9 +33,9 @@
         BeanFactory beanFactory = new XmlBeanFactory(resource);
         ```
 
-      - classpathXmlApplicationContext：ApplicationContext实现，从Classpath获取配  置文件。`BeanFactory resource = new ClassPathResource("*.xml");`
+- classpathXmlApplicationContext：ApplicationContext实现，从Classpath获取配  置文件。`BeanFactory resource = new ClassPathResource("*.xml");`
 
-      - FileSystemXmlAApplicationContext:ApplicationContext实现，从文件系统获取配置文件。`BeanFactory b = new FileSystemXmlApplicationContext("*.xml")`
+- FileSystemXmlAApplicationContext:ApplicationContext实现，从文件系统获取配置文件。`BeanFactory b = new FileSystemXmlApplicationContext("*.xml")`
 
    ### 2.实例化Bean
      #### 1) 使用构造器实例化
