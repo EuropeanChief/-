@@ -4,9 +4,11 @@
 
 ### 1.依赖注入有三种方法
 1).构造器注入
+
  构造器注入是通过配置构造器参数实现，有构造器方法、静态工厂方法、实例工厂方法。具体细节上节有说明。这里要加个小细节，就是静态工厂方法中使用的方法必须是用static标识的静态方法不然会报错。
 
 a.根据参数索引注入
+
  index指的是第几个参数，如果你的方法中具有多个参数，就一定要小心对应index的位置，我之前有个错误，就是写value值是没注意对应index，导致参数类型不一致一直在报错。
 ```
     <bean id="byIndex" class="test.HelloImpl2">
@@ -16,6 +18,7 @@ a.根据参数索引注入
 ```
 
 b.根据参数类型注入
+
  type指定参数类型，如果是基本类型可以直接在type里写，如type="int"，如果不是就需要指定类，如：type="java.lang.String"
 ```
     <bean id="byType" class="包名.类名" >
@@ -25,7 +28,7 @@ b.根据参数类型注入
 ```
 
 c.根据参数名注入
- name指定形参名，value参数值。
+    name指定形参名，value参数值。
 ```
     <bean id="byName" class="包名.类名">
         <constructor-arg name="ind" value="1" />
@@ -34,6 +37,7 @@ c.根据参数名注入
 ```
 
 2).setter注入
+
  当你使用的类中不含有构造函数时，创建setter方法就能进行setter注入，当你的类中含有其他构造函数时，必须保证有空构造函数，否则无法进行setter注入。
  xml文件中代码
 ```
@@ -78,6 +82,8 @@ A.sayHello();
 ```
 
 3).方法注入
+
     因为Spring对于boolean类型进行了容错处理，可以使用"true/false"标准的java值进行注入，还能使用"yes/no"、"on/off"、"1/0"进行注入。
+
 a.注入Bean ID
 
